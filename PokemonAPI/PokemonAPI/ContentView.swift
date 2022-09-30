@@ -8,19 +8,56 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @EnvironmentObject var viewModel : PokemonsViewModel
+    @State var limit: Int = 10
+    @State var offset: Int = 0
+    @State var isAddView : Bool = false
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationView{
+            VStack{
+                Text("POKEMONS")
+                    .bold()
+                    .font(.largeTitle)
+                    .fontWeight(.medium)
+                    .foregroundColor(.mint)
+                    .offset(y:-230)
+                VStack{
+                    HStack{
+                        Text("Limit")
+                            .bold()
+                            .font(.title3)
+                            .fontWeight(.medium)
+                            .foregroundColor(.mint)
+                        Picker("limit", selection: $limit){
+                            ForEach(0 ..< 30){
+                                Text("\($0) Pokemons")
+                            }
+                        }
+                        .pickerStyle(.wheel)
+                        .frame(width: 150, height: 50, alignment: .center)
+                    }
+                    .toolbar{ ToolbarItem(placement: .bottomBar ){
+                        Button("Search"){
+                            viewModel.fetchPokemons(limit, offset)
+                            isAddView = true
+                        }.tint(.blue)
+                            .buttonStyle(.borderedProminent)
+                            .buttonBorderShape(.capsule)
+                            .controlSize(.large)
+                    }
+                    }
+                    .sheet(isPresented: $isAddView, content:{
+                        PokemonsView(limit: $limit, offset: $offset, isAddView: $isAddView)
+                    })
+                }
+            }
         }
-        .padding()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView().environmentObject(PokemonsViewModel())
     }
 }

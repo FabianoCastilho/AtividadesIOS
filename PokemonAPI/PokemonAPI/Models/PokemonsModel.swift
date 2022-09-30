@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct PokeModel : Codable{
+struct PokemonsModel : Codable{
     var name : String
     var url : String
 }
-struct PokeResult : Codable{
+struct ResultsModel : Codable{
     var count : Int
-    var results : [PokeModel] = []
+    var results : [PokemonsModel] = []
 }

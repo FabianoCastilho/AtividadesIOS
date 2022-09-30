@@ -8,13 +8,42 @@
 import SwiftUI
 
 struct PokemonsView: View {
+    @EnvironmentObject var viewModel : PokemonsViewModel
+    @Binding var limit: Int
+    @Binding var offset: Int
+    @Binding var isAddView : Bool
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack{
+            Button(action: {
+                if offset < limit {
+                   offset = 0
+                }else{
+                    offset -= limit
+                }
+                viewModel.fetchPokemons(limit, offset)
+            }, label: { Label(
+                "", systemImage: "chevron.backward.2")
+            })
+            Spacer()
+            Button(action: {
+                offset += limit
+                viewModel.fetchPokemons(limit, offset)
+            }, label: { Label(
+                "", systemImage: "chevron.forward.2")
+            })
+        }
+        List{
+            ForEach(viewModel.pokemons, id: \.name){poke in
+                
+                    HStack {
+                       
+                        Text("\(poke.name)")
+                    }
+                }
+               
+            
+        }
     }
 }
 
-struct PokemonsView_Previews: PreviewProvider {
-    static var previews: some View {
-        PokemonsView()
-    }
-}
+
