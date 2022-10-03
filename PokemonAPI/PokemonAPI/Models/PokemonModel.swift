@@ -8,10 +8,10 @@
 import Foundation
 
 struct PokemonModel : Codable{
+    var abilities : [Abilities] = []
     var name : String = ""
     var order : Int = 0
-    var abilities : [Abilities] = []
-    var sprities : Sprites = Sprites()
+    var sprites : Sprites = Sprites()
 }
 
 struct Abilities : Codable{
@@ -26,7 +26,10 @@ struct Sprites : Codable{
     var other : OfficialArtWork = OfficialArtWork()
 }
 struct OfficialArtWork : Codable{
-    var officialArtWork : FrontDefault = FrontDefault()
+    var artWork : FrontDefault = FrontDefault()
+    private enum CodingKeys: String, CodingKey {
+        case artWork = "official-artwork"
+    }
 }
 struct FrontDefault: Codable{
     var front_default : String = ""

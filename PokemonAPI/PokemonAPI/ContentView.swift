@@ -21,7 +21,7 @@ struct ContentView: View {
                     .font(.largeTitle)
                     .fontWeight(.medium)
                     .foregroundColor(.mint)
-                    .offset(y:-230)
+                    .offset(y:-205)
                 VStack{
                     HStack{
                         Text("Limit")
@@ -41,10 +41,11 @@ struct ContentView: View {
                         Button("Search"){
                             viewModel.fetchPokemons(limit, offset)
                             isAddView = true
-                        }.tint(.blue)
-                            .buttonStyle(.borderedProminent)
-                            .buttonBorderShape(.capsule)
-                            .controlSize(.large)
+                        }
+                        .tint(.blue)
+                        .buttonStyle(.borderedProminent)
+                        .buttonBorderShape(.capsule)
+                        .controlSize(.regular)
                     }
                     }
                     .sheet(isPresented: $isAddView, content:{
