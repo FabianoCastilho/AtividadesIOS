@@ -13,29 +13,28 @@ struct PokemonsView: View {
     @Binding var limit: Int
     @Binding var offset: Int
     @Binding var isAddView : Bool
+    
     var body: some View {
         NavigationView{
             VStack{
-                HStack{
-                    List{
-                        ForEach(Array(viewModel.pokemonsDetail.enumerated()), id: \.offset){index, pokemon in
-                            NavigationLink(destination: PokemonDetailView(pokemon: pokemon), label: {
-                                HStack {
-                                    AsyncImage(url: URL(string: pokemon.sprites.front_default))
-                                
-                                        .frame(width: 60, height: 45)
-                                    Text("\(pokemon.name)")
-                                        .bold()
-                                        .font(.title3)
-                                        .fontWeight(.medium)
-                                        .frame(alignment: .center)
-                                }
-                            })
-                        }
+                List{
+                    ForEach(Array(viewModel.pokemonsDetail.enumerated()), id: \.offset){index, pokemon in
+                        NavigationLink(destination: PokemonDetailView(pokemon: pokemon), label: {
+                            HStack {
+                                AsyncImage(url: URL(string: pokemon.sprites.front_default))
+                                    .frame(width: 60, height: 45)
+                                    .padding()
+                                Text("\(pokemon.name)")
+                                    .bold()
+                                    .font(.title3)
+                                    .fontWeight(.medium)
+                                    .frame(alignment: .center)
+                            }
+                            .padding()
+                        })
                     }
-                }
+                }.listStyle(.plain)
                 .toolbar{ToolbarItem(placement: .navigationBarLeading){
-                    
                     Button(action: {
                         if offset < limit {
                             offset = 0
@@ -44,7 +43,6 @@ struct PokemonsView: View {
                             offset -= limit
                             viewModel.fetchPokemons(limit, offset)
                         }
-                        
                     }, label: { Label(
                         "", systemImage: "chevron.backward.2")
                     })
@@ -54,11 +52,10 @@ struct PokemonsView: View {
                     Button(action: {
                         offset += limit
                         viewModel.fetchPokemons(limit, offset)
-                    }, label: { Label(
+                        }, label: { Label(
                         "", systemImage: "chevron.forward.2")
-                    })
-                    
-                }
+                        })
+                    }
                 }
                 Button("Close"){
                     isAddView = false

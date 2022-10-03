@@ -26,7 +26,7 @@ struct ContentView: View {
                     HStack{
                         Text("Limit")
                             .bold()
-                            .font(.title3)
+                            .font(.title2)
                             .fontWeight(.medium)
                             .foregroundColor(.mint)
                         Picker("limit", selection: $limit){

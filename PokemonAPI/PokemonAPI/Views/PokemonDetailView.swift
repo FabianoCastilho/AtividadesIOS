@@ -34,10 +34,9 @@ struct PokemonDetailView: View {
                 .background(Color("backColor"))
                 .cornerRadius(20)
                 .offset(y:-60)
-               
+            
             VStack{
                 Text("Habilidades")
-                   
                     .font(.title)
                     .fontWeight(.medium)
                     .frame(alignment: .center)
@@ -45,11 +44,10 @@ struct PokemonDetailView: View {
                     Text("\(item.ability.name)")
                         .frame(maxWidth: .infinity , alignment: .center)
                         .font(.title3)
-                      
+                    
                 }
             }
         }
-        
     }
 }
 
