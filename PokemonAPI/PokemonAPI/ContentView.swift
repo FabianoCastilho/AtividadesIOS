@@ -13,22 +13,16 @@ struct ContentView: View {
     @State var limit: Int = 10
     @State var offset: Int = 0
     @State var isAddView : Bool = false
+   
     var body: some View {
         NavigationView{
             VStack{
                 Text("POKEMONS")
-                    .bold()
-                    .font(.largeTitle)
-                    .fontWeight(.medium)
-                    .foregroundColor(.mint)
-                    .offset(y:-205)
+                    .editTextLargeTitle(y: 205)
                 VStack{
                     HStack{
                         Text("Limit")
-                            .bold()
-                            .font(.title2)
-                            .fontWeight(.medium)
-                            .foregroundColor(.mint)
+                            .editTextTitle( .title2, .mint)
                         Picker("limit", selection: $limit){
                             ForEach(0 ..< 30){
                                 Text("\($0) Pokemons")
@@ -42,12 +36,8 @@ struct ContentView: View {
                             viewModel.fetchPokemons(limit, offset)
                             isAddView = true
                         }
-                        .tint(.blue)
-                        .buttonStyle(.borderedProminent)
-                        .buttonBorderShape(.capsule)
-                        .controlSize(.regular)
-                    }
-                    }
+                        .editButton(color: .blue)
+                    } }
                     .sheet(isPresented: $isAddView, content:{
                         PokemonsView(limit: $limit, offset: $offset, isAddView: $isAddView)
                     })

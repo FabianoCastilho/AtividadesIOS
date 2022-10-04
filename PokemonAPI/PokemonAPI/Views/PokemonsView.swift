@@ -9,11 +9,11 @@ import SwiftUI
 
 struct PokemonsView: View {
     @EnvironmentObject var viewModel : PokemonsViewModel
-   
+    @State var isHover = false
     @Binding var limit: Int
     @Binding var offset: Int
     @Binding var isAddView : Bool
-    
+   
     var body: some View {
         NavigationView{
             VStack{
@@ -25,10 +25,7 @@ struct PokemonsView: View {
                                     .frame(width: 60, height: 45)
                                     .padding()
                                 Text("\(pokemon.name)")
-                                    .bold()
-                                    .font(.title3)
-                                    .fontWeight(.medium)
-                                    .frame(alignment: .center)
+                                    .editTextTitle(.title3, .blue)
                             }
                             .padding()
                         })
@@ -59,10 +56,8 @@ struct PokemonsView: View {
                 }
                 Button("Close"){
                     isAddView = false
-                }.tint(.red)
-                    .buttonStyle(.borderedProminent)
-                    .buttonBorderShape(.capsule)
-                    .controlSize(.large)
+                }
+                .editButton(color: .red)
             }
         }
     }

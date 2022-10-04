@@ -15,13 +15,8 @@ struct PokemonDetailView: View {
         VStack{
             HStack{
                 Text(pokemon.name.prefix(1).uppercased() + pokemon.name.dropFirst())
-                    .bold()
-                    .font(.largeTitle)
-                    .fontWeight(.medium)
-                    .frame(alignment: .center)
-                    .offset(y:-80)
+                    .editTextLargeTitle(y: 85)
             }
-            
             VStack{
                 AsyncImage(url: URL(string: pokemon.sprites.other.artWork.front_default) ) {image in
                     image
@@ -31,26 +26,22 @@ struct PokemonDetailView: View {
                     Color(.green)
                 }
             } .frame(width: 200, height: 200, alignment: .top)
-                .background(Color("backColor"))
+                .background(Color(.white))
                 .cornerRadius(20)
                 .offset(y:-60)
             
             VStack{
                 Text("Habilidades")
-                    .font(.title)
-                    .fontWeight(.medium)
-                    .frame(alignment: .center)
+                    .editTextTitle(.title2, .mint)
+                    .padding()
                 ForEach(pokemon.abilities, id: \.ability.name){ item in
                     Text("\(item.ability.name)")
-                        .frame(maxWidth: .infinity , alignment: .center)
-                        .font(.title3)
-                    
+                        .editTextTitle(.title3, .blue)
                 }
             }
         }
     }
 }
-
 struct PokemonDetailView_Previews: PreviewProvider {
     static var previews: some View {
         PokemonDetailView().environmentObject(PokemonsViewModel())
