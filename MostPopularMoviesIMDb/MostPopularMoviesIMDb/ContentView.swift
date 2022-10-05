@@ -35,6 +35,12 @@ struct ContentView: View {
                     }
                 }.listStyle(.plain)
             }
+            VStack{
+                Text("Erro Api: ")
+                    .font(.title3)
+                Text("\(viewModel.mostPopularData.errorMessage)")
+                    .font(.title3)
+            }  .padding()
         }
     }
 }

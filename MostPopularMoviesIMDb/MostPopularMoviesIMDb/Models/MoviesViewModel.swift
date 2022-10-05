@@ -10,6 +10,7 @@ import Foundation
 class MoviesViewModel : ObservableObject{
     
     @Published var items: [MostPopularDataDetail] = []
+    @Published var mostPopularData = MostPopularData()
         
     init(){
         fetchMovies()
@@ -30,7 +31,7 @@ class MoviesViewModel : ObservableObject{
                 if let data = data {
                     let result = try JSONDecoder().decode(MostPopularData.self, from: data)
                     self.items = result.items
-                    
+                    self.mostPopularData = result
                 }
             }
             catch {
