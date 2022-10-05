@@ -14,7 +14,7 @@ struct EditTextLargeTitle: ViewModifier {
             .bold()
             .font(.largeTitle)
             .fontWeight(.medium)
-            .foregroundColor(.mint)
+            .foregroundColor(.red)
             .offset(y:-y)
     
     }

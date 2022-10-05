@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MoviesDetailView: View {
     @Environment(\.dismiss) var dismiss
-    @State var movie : MostPopularDataDetail
+    @State var movie : MostPopularDataDetail = MostPopularDataDetail()
 
     var body: some View {
         VStack{
