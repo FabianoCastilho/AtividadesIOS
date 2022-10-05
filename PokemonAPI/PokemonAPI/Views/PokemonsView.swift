@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PokemonsView: View {
     @EnvironmentObject var viewModel : PokemonsViewModel
-    @State var isHover = false
+   
     @Binding var limit: Int
     @Binding var offset: Int
     @Binding var isAddView : Bool
